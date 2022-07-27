@@ -2,17 +2,6 @@ def calculate_tax_monthly(amount):
     amount = amount * 12
     return calculate_tax_annually(amount) / 12
 
-    '''def inner(amount):
-        
-        tax = func(amount)
-        amount = amount / 12
-        tax = tax / 12
-        print(amount)
-        print(tax)
-        return
-    return inner'''
-
-#@calculate_tax_monthly
 def calculate_tax_annually(amount):
     tax = 0
     #if amount in range(0, 600000):
