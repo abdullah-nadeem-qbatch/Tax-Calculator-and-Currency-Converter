@@ -5,34 +5,50 @@ def calculate_tax_monthly(amount):
     amount = amount * 12
     return calculate_tax_annually(amount) / 12
 
-'''def pre_calculation(func):
-    def inner(amount):
-        if amount in range(sl.slab1[0],sl.slab1[1]):
-            taxableAmount = amount - 1200000
-            tax = taxableAmount * 0.125
-            tax = tax + 15000
-        
-            return func()
+def calculate_slab(func):
+    def inner(amount, limit, percentage = 1, extra = 0):
+        tax = 0
+        taxableAmount = amount - limit
+        tax = taxableAmount * percentage
+        tax = tax + extra
+        tax = func(tax)
+        return tax
+    return inner
 
-@pre_calculation
-def fetch_tax(amount):
-    print(amount)
-
-fetch_tax(499)'''
+@calculate_slab
+def tax_calculate(tax_amount):
+    return tax_amount
 
 def calculate_tax_annually(amount):
     tax = 0
-    #if amount in range(0, 600000):
+    if amount < sl.tax_slab['slab1'][0]:
+        return tax
+
+    if amount > sl.tax_slab['slab1'][0] and amount <= sl.tax_slab['slab2'][0]:
+        tax = tax_calculate(amount, sl.tax_slab['slab1'][0], sl.tax_slab['slab1'][1])
+
+    if amount > sl.tax_slab['slab2'][0] and amount <= sl.tax_slab['slab3'][0]:
+        tax = tax_calculate(amount, sl.tax_slab['slab2'][0], sl.tax_slab['slab2'][1], sl.tax_slab['slab2'][2])
+
+    if amount > sl.tax_slab['slab3'][0] and amount <= sl.tax_slab['slab4'][0]:
+        tax = tax_calculate(amount, sl.tax_slab['slab3'][0], sl.tax_slab['slab3'][1], sl.tax_slab['slab3'][2])
+
+    if amount > sl.tax_slab['slab4'][0] and amount <= sl.tax_slab['slab5'][0]:
+        tax = tax_calculate(amount, sl.tax_slab['slab4'][0], sl.tax_slab['slab4'][1], sl.tax_slab['slab4'][2])
+
+    if amount > sl.tax_slab['slab5'][0] and amount <= sl.tax_slab['slab6'][0]:
+        tax = tax_calculate(amount, sl.tax_slab['slab5'][0], sl.tax_slab['slab5'][1], sl.tax_slab['slab5'][2])
+
+    if amount > sl.tax_slab['slab6'][0]:
+        tax = tax_calculate(amount, sl.tax_slab['slab6'][0], sl.tax_slab['slab6'][1], sl.tax_slab['slab6'][2])
+
+    return tax
+    ''' #if amount in range(0, 600000):
     #    return 0
-    if amount in range(600000, 1200000):
-        taxableAmount = amount - 600000
-        tax = taxableAmount * 0.025
-        #return tax
+    if amount >= 600000 and amount < 1200000:
+        tax = tax_calculate(amount, 600000, 0.025)
     elif amount in range(1200000, 2400000):
-        taxableAmount = amount - 1200000
-        tax = taxableAmount * 0.125
-        tax = tax + 15000
-        #return tax
+        tax = tax_calculate(amount, 1200000, 0.125, 15000)
     elif amount in range(2400000, 3600000):
         taxableAmount = amount - 2400000
         tax = taxableAmount * 0.20
@@ -53,13 +69,20 @@ def calculate_tax_annually(amount):
         tax = taxableAmount * 0.35
         tax = tax + 2955000
         #return tax
-    return tax
+    return tax'''
 
 
 def taxCalculations():
     print("Enter 'm' for monthly tax calculation")
     print("Enter 'a' for annual tax calculation")
-    period = input()[0]
+    try:
+        period = input()[0]
+        if period not in ['m','M','a','A']:
+            raise Exception
+    except Exception as e:
+        print("Please enter valid character!")
+        taxCalculations()
+
     if period == 'm' or period == 'M':
         amount = int(input("Enter your monthly salary in PKR: "))
         tax = calculate_tax_monthly(amount)
@@ -90,11 +113,14 @@ def taxCalculations():
 
 def save_tax_in_file(salary, tax):
     date_obj = datetime.date.today()
-    file1 = open(f'{date_obj}.txt','a')
-    file1.write(f'Monthly Income: {salary}\n')
-    file1.write(f'Tax: {tax}\n')
-    file1.write(f'Income after Deduction: {salary - tax}\n\n')
-    
-    file1.write(f'Annual Income: {salary*12}\n')
-    file1.write(f'Tax: {tax*12}\n')
-    file1.write(f'Income after Deduction: {(salary - tax)*12}\n\n')
+    with open(f'{date_obj}.txt','a') as file1:
+        file1.write("               By Month                               By Year                " + str(datetime.datetime.now()))
+        file1.write("\n* ")
+        file1.write("- "*38)
+        file1.write("\n|  Salary inc. Tax:  %15d  |  Salary inc Tax:   %15d  |\n" % (salary, salary * 12))
+        file1.write("|                                     |                                     |\n")
+        file1.write("|  Tax Deduction:    %15d  |  Tax Deduction:    %15d  |\n" % (tax, tax * 12))
+        file1.write("|                                     |                                     |\n")
+        file1.write("|  Salary after Tax: %15d  |  Salary after Tax: %15d  |\n" % (salary-tax, (salary-tax) * 12))
+        file1.write("- "*39)
+        file1.write("\n")

@@ -1,0 +1,9 @@
+Name: Abdullah
+Income: 100000
+Monthly Tax: 1250.0
+***** Expenses *****
+Grocery: 400
+Traveling: 3423
+Medical: 5675
+Entertainment: 2432
+Bills: 546

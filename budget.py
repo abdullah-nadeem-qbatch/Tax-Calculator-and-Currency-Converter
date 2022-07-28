@@ -24,13 +24,13 @@ class Budget:
 
 
     def saveInFile(self):
-        file1 = open(f'{self.name}.txt','a')
-        file1.write(f'Name: {self.name}\n')
-        file1.write(f'Income: {self.income}\n')
-        file1.write(f'Monthly Tax: {self.montlyTax}\n')
-        file1.write(f'***** Expenses *****\n')
-        file1.write(f'Grocery: {self.grocery}\n')
-        file1.write(f'Traveling: {self.traveling}\n')
-        file1.write(f'Medical: {self.medical}\n')
-        file1.write(f'Entertainment: {self.entertainment}\n')
-        file1.write(f'Bills: {self.bills}\n\n')
+        with open(f'{self.name}.txt','a') as file1:
+            file1.write(f'Name: {self.name}\n')
+            file1.write(f'Income: {self.income}\n')
+            file1.write(f'Monthly Tax: {self.montlyTax}\n')
+            file1.write(f'***** Expenses *****\n')
+            file1.write(f'Grocery: {self.grocery}\n')
+            file1.write(f'Traveling: {self.traveling}\n')
+            file1.write(f'Medical: {self.medical}\n')
+            file1.write(f'Entertainment: {self.entertainment}\n')
+            file1.write(f'Bills: {self.bills}\n\n')
