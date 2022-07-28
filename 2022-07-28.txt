@@ -1,0 +1,24 @@
+Monthly Income: 85000
+Tax: 875.0
+Income after Deduction: 84125.0
+
+Annual Income: 1020000
+Tax: 10500.0
+Income after Deduction: 1009500.0
+
+Monthly Income: 87500
+Tax: 937.0
+Income after Deduction: 86563.0
+
+Annual Income: 1050000
+Tax: 11244.0
+Income after Deduction: 1038756.0
+
+Monthly Income: 100000
+Tax: 1250.0
+Income after Deduction: 98750.0
+
+Annual Income: 1200000
+Tax: 15000.0
+Income after Deduction: 1185000.0
+

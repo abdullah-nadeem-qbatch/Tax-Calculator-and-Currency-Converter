@@ -20,19 +20,3 @@ class Converter:
         #print(curr)
         result = '\n'.join('{}: {}'.format(x, y) for x, y in zip(curr, converted))
         print(result)
-    def display_currencies(self):
-        curr = ['USD', 'PKR', 'EURO', 'AUD', 'UAE', 'RIYAL']
-        print('1. USD')
-        print('2. PKR')
-        print('3. EURO')
-        print('4. AUD')
-        print('5. UAE Dirham')
-        print('6. Riyal')
-        choice = int(input('Enter Serial Number of Currency: '))
-        print(curr[choice])
-
-
-
-#c1 = Converter('UAE', 232)
-#c1.convert()
-#c1.display_currencies()

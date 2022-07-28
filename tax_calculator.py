@@ -1,6 +1,24 @@
+import slabs as sl
+import datetime
+
 def calculate_tax_monthly(amount):
     amount = amount * 12
     return calculate_tax_annually(amount) / 12
+
+'''def pre_calculation(func):
+    def inner(amount):
+        if amount in range(sl.slab1[0],sl.slab1[1]):
+            taxableAmount = amount - 1200000
+            tax = taxableAmount * 0.125
+            tax = tax + 15000
+        
+            return func()
+
+@pre_calculation
+def fetch_tax(amount):
+    print(amount)
+
+fetch_tax(499)'''
 
 def calculate_tax_annually(amount):
     tax = 0
@@ -36,4 +54,47 @@ def calculate_tax_annually(amount):
         tax = tax + 2955000
         #return tax
     return tax
-#calculate_tax_monthly(calculate_tax_annually(700000))
+
+
+def taxCalculations():
+    print("Enter 'm' for monthly tax calculation")
+    print("Enter 'a' for annual tax calculation")
+    period = input()[0]
+    if period == 'm' or period == 'M':
+        amount = int(input("Enter your monthly salary in PKR: "))
+        tax = calculate_tax_monthly(amount)
+        print('*'*10)
+        print(f'Monthly Income: {amount}')
+        print(f'Monthly Tax: {tax}')
+        print(f'Monthly Income after deduction: {amount - tax}')
+        print()
+        print(f'Annual Income: {amount * 12}')
+        print(f'Annual Tax: {tax * 12}')
+        print(f'Annual Income after deduction: {(amount - tax) * 12}')
+
+    if period == 'a' or period == 'A':
+        amount = int(input("Enter your annual salary in PKR: "))
+        tax = calculate_tax_annually(amount)
+        print('*'*10)
+        print(f'Monthly Income: {amount//12}')
+        print(f'Monthly Tax: {tax//12}')
+        print(f'Monthly Income after deduction: {(amount - tax)//12}')
+        print()
+        print(f'Annual Income: {amount}')
+        print(f'Annual Tax: {tax}')
+        print(f'Annual Income after deduction: {amount - tax}')
+
+    if period == 'm' or period == 'M':
+        return amount,tax
+    return amount//12,tax//12
+
+def save_tax_in_file(salary, tax):
+    date_obj = datetime.date.today()
+    file1 = open(f'{date_obj}.txt','a')
+    file1.write(f'Monthly Income: {salary}\n')
+    file1.write(f'Tax: {tax}\n')
+    file1.write(f'Income after Deduction: {salary - tax}\n\n')
+    
+    file1.write(f'Annual Income: {salary*12}\n')
+    file1.write(f'Tax: {tax*12}\n')
+    file1.write(f'Income after Deduction: {(salary - tax)*12}\n\n')
