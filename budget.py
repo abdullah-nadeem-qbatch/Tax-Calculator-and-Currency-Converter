@@ -12,6 +12,7 @@ class Budget:
         self.entertainment = entertainment
         self.bills = bills
 
+
     def getValues(self):
         self.name = input("Enter your Name: ")
         self.income = int(input("Enter your Monthly Income: "))

@@ -2,6 +2,9 @@ import os
 import datetime
 
 def fetch_history():
+    '''
+    Displays history/content of searched file 
+    '''
     file_name = get_file_name()
     
     dir_path = os.path.dirname(os.path.realpath(__file__))
@@ -14,30 +17,16 @@ def fetch_history():
 
 
 def get_file_name():
+    '''
+    This functions gets the validated file name from user
+    '''
     print("Press 't' to see taxes: ")
     print("Press 'b' to see budgets")
     choice = input()[0]
-    if choice == 't':
-        #print("Enter date:")
-        
+    
+    if choice == 't':        
         return dateInput()
-        '''print("Enter date in 'dd' format: ")
-        dd = input()
-        if not(dd.isdigit() and len(dd)) == 2:
-            return False
-
-        print("Enter month in 'mm' format: ")
-        mm = input()
-        if not(mm.isdigit() and len(mm) == 2):
-            return False
-        
-        print("Enter year in 'yyyy' format: ")
-        yyyy = input()
-        if not(yyyy.isdigit() and len(mm) == 4):
-            return False
-        
-        file_name = yyyy + '-' + mm + '-' + dd + '.txt'
-        return file_name, True'''
+     
     else:
         print("Enter name: ")
         name = input()
@@ -46,6 +35,9 @@ def get_file_name():
 
 
 def dateInput():
+    '''
+    Inputs date in correct format which can be further searched
+    '''
     inputDate = input("Enter the date in format 'dd/mm/yyyy' : ")
 
     day, month, year = inputDate.split('/')
@@ -56,10 +48,10 @@ def dateInput():
     except ValueError:
         isValidDate = False
 
-    if(isValidDate):
-        date = str(year)+'-'+str(month)+'-'+str(day)+'.txt'
+    if isValidDate:
+        date = str(year) + '-' + str(month) + '-' + str(day) + '.txt'
         return date
         #print("Input date is valid ..")
     else:
-        print("Input date is not valid..")
+        print("Input date is not valid..\n")
         dateInput()

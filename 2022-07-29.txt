@@ -1,0 +1,8 @@
+               By Month                               By Year                2022-07-29 12:25:11.390020
+* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+|  Salary inc. Tax:           100000  |  Salary inc Tax:           1200000  |
+|                                     |                                     |
+|  Tax Deduction:               1250  |  Tax Deduction:              15000  |
+|                                     |                                     |
+|  Salary after Tax:           98750  |  Salary after Tax:         1185000  |
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 

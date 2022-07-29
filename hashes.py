@@ -7,7 +7,3 @@ currencies = {
     'UAE': {'USD': 0.27, 'PKR': 63, 'EURO': 0.27, 'AUD': 0.39, 'RIYAL': 1.02},
     'RIYAL': {'USD': 0.27, 'PKR': 62, 'EURO': 0.26, 'AUD': 0.38, 'UAE': 0.98}
 }
-
-for i in currencies['USD']:
-    print(currencies['USD'][i])
-

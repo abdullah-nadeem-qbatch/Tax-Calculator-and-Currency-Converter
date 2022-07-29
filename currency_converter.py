@@ -11,12 +11,11 @@ class Converter:
         self.choice = choice
         self.amount = amount
 
+
     def convert(self):
         converted = list(map(lambda a : a * self.amount, Converter.conversions[self.choice].values()))
-        #print(converted)
         curr = []
         for i in Converter.conversions[self.choice].keys():
             curr.append(i)
-        #print(curr)
         result = '\n'.join('{}: {}'.format(x, y) for x, y in zip(curr, converted))
         print(result)
